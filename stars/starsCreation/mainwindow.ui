@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Гравитационная симуляция N-тел</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>1210</x>
+      <y>10</y>
+      <width>720</width>
+      <height>1020</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>QScrollArea { border: none; background-color: rgb(240, 240, 245); }</string>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>-430</y>
+       <width>703</width>
+       <height>1450</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>1450</height>
+      </size>
+     </property>
+     <widget class="QPushButton" name="pushButtonStart">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>680</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QPushButton {
+    background-color: rgb(50, 150, 250);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 18pt;
+}
+QPushButton:hover {
+    background-color: rgb(70, 170, 255);
+}</string>
+      </property>
+      <property name="text">
+       <string>▶ Start</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_timeStep">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>680</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Информация о симуляции</string>
+      </property>
+      <widget class="QLabel" name="label_step">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 11pt;</string>
+       </property>
+       <property name="text">
+        <string>Шаг расчета: 0</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_time">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 11pt;</string>
+       </property>
+       <property name="text">
+        <string>Время системы: 0.0 с</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_kineticEnergy">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>190</y>
+        <width>680</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Кинетическая энергия</string>
+      </property>
+      <widget class="QLabel" name="label_kineticEnergy">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>660</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 11pt;</string>
+       </property>
+       <property name="text">
+        <string>Кинетическая энергия: 0.0 Дж</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_merging">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>280</y>
+        <width>680</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Настройка слияния объектов</string>
+      </property>
+      <widget class="QLabel" name="label_distConnect">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>300</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Объекты всегда сливаются при касании (физические радиусы). Это поле - дополнительное расстояние для экспериментов.</string>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Доп. расстояние слияния (м):</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_distConnect">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>30</y>
+         <width>250</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>0 = только физические столкновения. Увеличьте для слияния на расстоянии.</string>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_updateDist">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>30</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_mergeCount">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt; color: rgb(200, 100, 50);</string>
+       </property>
+       <property name="text">
+        <string>Количество слияний: 0</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_timestep">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>680</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Управление скоростью симуляции</string>
+      </property>
+      <widget class="QLabel" name="label_dt">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>200</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Шаг времени (dt):</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_dt">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>30</y>
+         <width>150</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>10000</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_updateDt">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>30</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_dtX2">
+       <property name="geometry">
+        <rect>
+         <x>480</x>
+         <y>30</y>
+         <width>90</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>×2 Быстрее</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_dtDiv2">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>30</y>
+         <width>90</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>÷2 Медленнее</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_currentDt">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt; color: rgb(100, 100, 100);</string>
+       </property>
+       <property name="text">
+        <string>Текущий dt: 10000 с</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_objects">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>520</y>
+        <width>680</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Управление объектами</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_addObject">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>220</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt; background-color: rgb(100, 200, 100);</string>
+       </property>
+       <property name="text">
+        <string> Добавить объект</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_removeObject">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>30</y>
+         <width>220</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt; background-color: rgb(255, 150, 150);</string>
+       </property>
+       <property name="text">
+        <string> Удалить случайный</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_objectMass">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>75</y>
+         <width>200</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Масса (× масса Земли):</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_objectMass">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>75</y>
+         <width>250</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>1.0</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_top3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>640</y>
+        <width>680</width>
+        <height>160</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Топ-3 самых массивных объектов</string>
+      </property>
+      <widget class="QLabel" name="label_top1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>660</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>1️⃣ Масса: - | Позиция: - | Скорость: -</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_top2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>660</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>2️⃣ Масса: - | Позиция: - | Скорость: -</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_top3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>660</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>3️⃣ Масса: - | Позиция: - | Скорость: -</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_conservation">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>810</y>
+        <width>680</width>
+        <height>170</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Законы сохранения</string>
+      </property>
+      <widget class="QLabel" name="label_totalEnergy">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Полная энергия: 0.0 Дж</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_momentum">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>65</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Импульс: (0.0, 0.0) кг·м/с</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_angularMomentum">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Угловой момент: 0.0 кг·м²/с</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_potentialEnergy">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>135</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Потенциальная энергия: 0.0 Дж</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_fileOps">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>990</y>
+        <width>680</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Файловые операции</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_save">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>330</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Сохранить состояние</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_load">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>30</y>
+         <width>320</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Загрузить состояние</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_tests">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>1080</y>
+        <width>680</width>
+        <height>180</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; }</string>
+      </property>
+      <property name="title">
+       <string>Тесты и статистика</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_test1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>210</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Тест 1: Солнечная</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_test2">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>30</y>
+         <width>210</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Тест 2: Столкновение</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_test3">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>30</y>
+         <width>220</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Тест 3: Большая</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_customSystem">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>72</y>
+         <width>120</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt; font-weight: bold;</string>
+       </property>
+       <property name="text">
+        <string>Своя система:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_customObjects">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>72</y>
+         <width>100</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>1000</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Количество</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_createCustom">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>72</y>
+         <width>120</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt; background-color: rgb(50, 150, 50); color: white; font-weight: bold;</string>
+       </property>
+       <property name="text">
+        <string>Создать</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_customHint">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>72</y>
+         <width>300</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 8pt; color: rgb(100, 100, 100);</string>
+       </property>
+       <property name="text">
+        <string>(от 1 до 50000 объектов)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_objectCount">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>660</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>Текущее количество объектов: 0</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_statistics">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>125</y>
+         <width>660</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt; color: rgb(100, 100, 100);</string>
+       </property>
+       <property name="text">
+        <string>Начальное: - | Удалено: - | Создано слиянием: -</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_initialObjects">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>160</y>
+         <width>660</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 8pt; background-color: rgb(245, 245, 245);</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_optimization">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>1270</y>
+        <width>680</width>
+        <height>150</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QGroupBox { font-weight: bold; font-size: 11pt; color: rgb(200, 50, 50); }</string>
+      </property>
+      <property name="title">
+       <string>Оптимизация производительности</string>
+      </property>
+      <widget class="QLabel" name="label_stepsPerFrame">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>200</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Больше шагов = быстрее визуально, но менее плавно</string>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt; color: black;</string>
+       </property>
+       <property name="text">
+        <string>Шагов физики/кадр:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_stepsPerFrame">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>30</y>
+         <width>100</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_updateSteps">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>30</y>
+         <width>100</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_cutoffDistance">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>65</y>
+         <width>200</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Игнорировать объекты дальше этого расстояния (0 = отключено)</string>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt; color: black;</string>
+       </property>
+       <property name="text">
+        <string>Cutoff расстояние (м):</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_cutoffDistance">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>65</y>
+         <width>100</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt;</string>
+       </property>
+       <property name="text">
+        <string>1e11</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_updateCutoff">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>65</y>
+         <width>100</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt;</string>
+       </property>
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_perfInfo">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>660</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 9pt; color: rgb(100, 100, 100);</string>
+       </property>
+       <property name="text">
+        <string>Тест 1-2: cutoff = 3×10¹² м, шагов = 1-5 | Тест 3: cutoff = 3×10¹² м, шагов = 10-20</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_useGrid">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>30</y>
+         <width>240</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Использовать пространственную сетку для ускорения (рекомендуется)</string>
+       </property>
+       <property name="styleSheet">
+        <string>font-size: 10pt; color: black; font-weight: bold;</string>
+       </property>
+       <property name="text">
+        <string>Spatial Grid</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1920</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
